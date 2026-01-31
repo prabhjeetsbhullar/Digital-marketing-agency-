@@ -14,11 +14,23 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
 // Form submission handler
 const contactForm = document.querySelector('.contact-form');
-if (contactForm) {
+const formMessage = document.getElementById('form-message');
+
+if (contactForm && formMessage) {
     contactForm.addEventListener('submit', function(e) {
         e.preventDefault();
-        alert('Thank you for your message! We will get back to you soon.');
+        
+        // Display success message
+        formMessage.textContent = 'Thank you for your message! We will get back to you soon.';
+        formMessage.className = 'form-message success';
+        
+        // Reset form
         this.reset();
+        
+        // Hide message after 5 seconds
+        setTimeout(() => {
+            formMessage.className = 'form-message';
+        }, 5000);
     });
 }
 
